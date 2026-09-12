@@ -42,6 +42,6 @@ d. Below the figure, write three concise statements identifying the category wit
   
   
 **README file Version History**   
-*September 12, 2026* - Published the repository (included files: 1 .csv, 1 .ipynb, and README.md).  
+*September 12, 2026* - Published the repository and inserted some content into the README file.  
 
 
