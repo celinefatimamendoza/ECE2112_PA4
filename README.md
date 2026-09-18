@@ -31,16 +31,18 @@ Display the resulting DataFrame and its number of rows. Both filtering condition
   ~ **np.mean()** - This computes the arithmetic mean of the given set of numbers.  
 
   *Example:*   
-    ```np.mean(df[['Math', 'Electronics', 'GEAS', 'Communication']], axis = 1)``` - This calculates the average of the four subjects listed. The `axis = 1` specifies that the calculation should be done horizontally, or row-by-row.    
+    ```np.mean(df[['Math', 'Electronics', 'GEAS', 'Communication']], axis = 1)```   
+    - This calculates the average of the four subjects listed. The `axis = 1` specifies that the calculation should be done horizontally, or row-by-row.    
 
   ~ **.loc[]** - This is used to select and access the data from the rows and columns via their labels.   
 
-  *Example:*  
-  ```df.loc[(df['Hometown'] == 'Visayas') & (df['Track'] == 'Communication')][['Name', 'Gender', 'Math', 'Electronics', 'Average']] ``` - This uses a Boolean condition inside the '.loc[]' in which the data will be filtered based on their *Hometown* and *Track*. The given list specifies which column labels will be included in the output table.  
+  *Example:*   
+  ```df.loc[(df['Hometown'] == 'Visayas') & (df['Track'] == 'Communication')][['Name', 'Gender', 'Math', 'Electronics', 'Average']] ```   
+  - This uses a Boolean condition inside the '.loc[]' in which the data will be filtered based on their *Hometown* and *Track*. The given list specifies which column labels will be included in the output table.  
 
   ~ **len()** - This returns the total number of elements inside the object.   
 
-  *Example:* 
+  *Example:*   
   ```len(VisComm)```  
 
 ```python
@@ -69,7 +71,7 @@ Display `VisFemale`. Then display only the rows of `VisFemale` whose `Average` i
 ### Function:  
   ~ **.loc[]** - This is used to select and access the data from the rows and columns via their labels.    
 
-  *Example:*
+  *Example:*  
   ```df.loc[(df['Hometown'] == 'Visayas') & (df['Gender'] == 'Female')] [['Name', 'Track', 'GEAS', 'Electronics', 'Average']]```, ```VisFemale.loc[(VisFemale['Average']>=60)]```
   
 ```python
@@ -90,10 +92,56 @@ c. Create one figure containing three bar charts: mean `Average` by `Track`, by 
 d. Below the figure, write three concise statements identifying the category with the highest sample mean for each feature.  
 
 ### Function: 
-  ~ **.groupby()** - 
+  ~ **.groupby()** - This splits the data into groups based on similar categories, allowing you to perform calculations or manipulations by group.  
+ 
+  ~ **.mean()** - This computes the arithmetic mean of the given set of numbers.  
+  
+  *Example:*  
+  ```df.groupby('Track')['Average'].mean()```, ```Gender_Mean = df.groupby('Gender')['Average'].mean()```, ```Hometown_Mean = df.groupby('Hometown')['Average'].mean()```  
 
+  ~ **plt.figure()** - This sets the dimensions of the figure or plot/chart.  
 
+  *Example:*  
+  ```plt.figure(figsize=(20,6))``` - The `figsize=(20,6)` inside the main function sets the figure dimensions. The parameters indicate the width and height.  
 
+  ~ **plt.subplot(nrows, ncols, index)** - This allows you to display multiple plots in a single figure. This follows a (`nrows` - `ncols` - `index`) format.  
+  ```nrows``` - indicates the total number of rows in the grid.  
+  ```ncols``` - indicates the total number of columns in the grid.  
+  ```index``` - indicates the position of the specific grid. It starts from left to right.  
+
+  *Example:*   
+  ```plt.subplot(1,3,1)```, ```plt.subplot(1,3,2)```, ```plt.subplot(1,3,3)```   
+
+  ~ **plt.bar(x, height)** - This creates a vertical bar chart. It is used to compare the values from different groups/categories. The `x` is for the data to be input on the x-axis. The `height` is dedicated to displaying the values of the variables on the y-axis.  
+
+  *Example:*  
+  ```plt.bar(Track_Mean.index, Track_Mean.values, color = '#FF1B8D')```, ```plt.bar(Gender_Mean.index, Gender_Mean.values, color='#FFD900')```, ```plt.bar(Hometown_Mean.index, Hometown_Mean.values, color='#1BB3FF')```  
+
+  ~ **plt.title()** - This displays the title for the graph.  
+
+  *Example:*   
+  ```plt.title("Mean Average by Track")```, ```plt.title("Mean Average by Gender")```, ```plt.title("Mean Average by Hometown")```  
+
+  ~ **plt.xlabel()** - This indicates the label for the x-axis.     
+  
+  *Example:*  
+  ```plt.xlabel("Track")```, ```plt.xlabel("Gender")```, ```plt.xlabel("Hometown")```  
+  
+  ~ **plt.ylabel()** - This indicates the label for the y-axis.    
+  
+  *Example:*    
+  ```plt.ylabel("Average Score")```  
+
+  ~ **plt.figtext()** - This allows to customize the text included inside the figure canvas.   
+
+  *Example:*  
+  ```plt.figtext(0.02, -0.2, statements, fontsize=15, ha="left")```   
+  - The first parameter sets where to place the text in the x-coordinate. The second parameter sets where to place the text in the y-coordinate. The negative sign means it will be placed below the bottom border of the graph. The third parameter indicates what string to be displayed. The fourth parameter sets the font size for the string. Lastly, the fifth parameter shows that the horizontal alignment(*ha*) is to the left.  
+
+  ~ **plt.tight_layout()** - This is used to adjust the layout to prevent the text and labels from overlapping.  
+  
+  ~ **plt.show()** - This shows the final outcome of the graph.  
+  
 ```python
 Track_Mean = df.groupby('Track')['Average'].mean()
 Gender_Mean = df.groupby('Gender')['Average'].mean()
@@ -132,7 +180,7 @@ statements = (
 
 plt.figtext(0.02, -0.2, statements, fontsize=15, ha="left")
 
-plt.tight_layout()
+plt.tight_layout() 
 plt.show()
 ```
 
