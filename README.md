@@ -22,7 +22,26 @@ Retain only these columns, in the stated order:
 ```Name, Gender, Math, Electronics, Average```   
 Display the resulting DataFrame and its number of rows. Both filtering conditions must be applied to the source dataset before the columns are selected.  
 
-### Function:  
+### Function:   
+  ~ **.read_excel** - This reads the Excel file inside the parentheses and imports the data from that file, allowing the user or coder to manipulate or filter the dataset through programming.   
+
+  *Example:*  
+  ```pd.read_excel('board2.xlsx')```  
+
+  ~ **np.mean()** - This computes the arithmetic mean of the given set of numbers.  
+
+  *Example:*   
+    ```np.mean(df[['Math', 'Electronics', 'GEAS', 'Communication']], axis = 1)``` - This calculates the average of the four subjects listed. The `axis = 1` specifies that the calculation should be done horizontally, or row-by-row.    
+
+  ~ **.loc[]** - This is used to select and access the data from the rows and columns via their labels.   
+
+  *Example:*  
+  ```df.loc[(df['Hometown'] == 'Visayas') & (df['Track'] == 'Communication')][['Name', 'Gender', 'Math', 'Electronics', 'Average']] ``` - This uses a Boolean condition inside the '.loc[]' in which the data will be filtered based on their *Hometown* and *Track*. The given list specifies which column labels will be included in the output table.  
+
+  ~ **len()** - This returns the total number of elements inside the object.   
+
+  *Example:* 
+  ```len(VisComm)```  
 
 ```python
 import pandas as pd
@@ -48,7 +67,11 @@ Retain only:
 Display `VisFemale`. Then display only the rows of `VisFemale` whose `Average` is at least 60. Do not overwrite `VisFemale` when performing this second filter.  
 
 ### Function:  
+  ~ **.loc[]** - This is used to select and access the data from the rows and columns via their labels.    
 
+  *Example:*
+  ```df.loc[(df['Hometown'] == 'Visayas') & (df['Gender'] == 'Female')] [['Name', 'Track', 'GEAS', 'Electronics', 'Average']]```, ```VisFemale.loc[(VisFemale['Average']>=60)]```
+  
 ```python
 VisFemale = df.loc[(df['Hometown'] == 'Visayas') & (df['Gender'] == 'Female')] [['Name', 'Track', 'GEAS', 'Electronics', 'Average']]
 avesixty_VisFemale = VisFemale.loc[(VisFemale['Average']>=60)]
@@ -67,6 +90,9 @@ c. Create one figure containing three bar charts: mean `Average` by `Track`, by 
 d. Below the figure, write three concise statements identifying the category with the highest sample mean for each feature.  
 
 ### Function: 
+  ~ **.groupby()** - 
+
+
 
 ```python
 Track_Mean = df.groupby('Track')['Average'].mean()
@@ -114,7 +140,9 @@ plt.show()
   
   
 **README file Version History**   
-*September 12, 2026* - Published the repository and inserted some content into the README file.  
-*September 17, 2026* - Published the Excel file and the `PA4.ipynb`.
+*September 12, 2026* - Published the repository and inserted some content into the README file.    
+*September 17, 2026* - Published the Excel file and the `PA4.ipynb`.  
+*September 18, 2026* - Completed the content for the README file.
+
 
 
